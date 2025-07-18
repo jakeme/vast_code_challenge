@@ -1,6 +1,10 @@
 from mining_sim.constants import UNLOADING_TIME
 
-""" These tests could be parametrized, although at this scale I think it sacrifices readability for not much benefit """
+"""
+These tests could be parametrized, although at this scale I think it sacrifices readability for not much benefit
+
+Longer tests (that go through the simulation state several times) are a coverage gap here
+"""
 
 
 def test_queue_one_station_one_truck(mining_clock, unload_queue_one_station):

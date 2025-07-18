@@ -8,13 +8,12 @@ def mining_sim(num_trucks, num_unload_stations, sim_time_minutes):
     logging.basicConfig()
 
     sim_clock = MiningClock()
-
     truck_list = [MiningTruck(str(i), sim_clock) for i in range(num_trucks)]
     unload_station_queue = UnloadStationQueue(sim_clock, num_unload_stations)
 
     for t in range(sim_time_minutes):
         sim_clock.increment_time()
-
+        unload_station_queue.clean_up_queue()
         for truck in truck_list:
             if truck.current_state in (
                 MiningTruck.mining,
@@ -30,7 +29,7 @@ def mining_sim(num_trucks, num_unload_stations, sim_time_minutes):
                     truck.start_unloading()
                     truck.state_end_time = exit_time
                     truck.increment_waiting_time(wait_time)
-                    logger.info(
+                    logger.debug(
                         f"Truck {truck.name} has reached an unloading station, dwell time {wait_time} minutes"
                     )
                 continue

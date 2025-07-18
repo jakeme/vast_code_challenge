@@ -12,7 +12,11 @@ class UnloadStationQueue:
         self.dwell_time_list = [0 for _ in range(num_unload_stations)]
 
     def clean_up_queue(self):
-        """Remove trucks from the lists that are done unloading"""
+        """Remove trucks from the lists that are done unloading and accumulate dwell time"""
+        for i in range(len(self.dwell_time_list)):
+            has_queue = len(self.unload_stations_list[i]) > 1
+            if has_queue:
+                self.dwell_time_list[i] += 1
         for station_queue in self.unload_stations_list:
             if station_queue:
                 if station_queue[0] <= self.clock.time:
@@ -42,6 +46,6 @@ class UnloadStationQueue:
         assert station_ready_index is not None
         exit_time = station_ready_time + UNLOADING_TIME
         wait_time = station_ready_time - self.clock.time
+
         self.unload_stations_list[station_ready_index].append(exit_time)
-        self.dwell_time_list[station_ready_index] += wait_time
         return exit_time, wait_time

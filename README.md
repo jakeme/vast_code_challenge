@@ -41,3 +41,8 @@ Test/Lint are performed by Github Actions every PR.
 
 In a resource-unlimited world, I'd pin package versions using pip-compile or uv.
 
+### Running locally
+
+Make a venv, `pip install requirements.in`, `pip install -e .`, then run `python -m pytest executor`
+
+Modify the parameters in the `test_simulation.py` file as desired.
