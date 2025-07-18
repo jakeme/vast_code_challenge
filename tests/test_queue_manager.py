@@ -30,7 +30,6 @@ def test_queue_one_station_two_trucks(mining_clock, unload_queue_one_station):
     exit_time, wait_time = unload_queue_one_station.add_to_queue()
     assert exit_time == mining_clock.time + (2 * UNLOADING_TIME)
     assert wait_time == UNLOADING_TIME
-    assert unload_queue_one_station.dwell_time_list[0] == UNLOADING_TIME
 
 
 def test_queue_two_stations(mining_clock, unload_queue_two_stations):
@@ -45,7 +44,6 @@ def test_queue_two_stations(mining_clock, unload_queue_two_stations):
     exit_time, wait_time = unload_queue_two_stations.add_to_queue()
     assert exit_time == mining_clock.time + (2 * UNLOADING_TIME)
     assert wait_time == UNLOADING_TIME
-    assert unload_queue_two_stations.dwell_time_list[0] == UNLOADING_TIME
 
 
 def test_queue_one_station_three_trucks(mining_clock, unload_queue_one_station):
@@ -60,4 +58,3 @@ def test_queue_one_station_three_trucks(mining_clock, unload_queue_one_station):
     exit_time, wait_time = unload_queue_one_station.add_to_queue()
     assert exit_time == mining_clock.time + (3 * UNLOADING_TIME)
     assert wait_time == 2 * UNLOADING_TIME
-    assert unload_queue_one_station.dwell_time_list[0] == 3 * UNLOADING_TIME

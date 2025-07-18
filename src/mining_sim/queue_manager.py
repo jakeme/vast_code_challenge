@@ -22,7 +22,7 @@ class UnloadStationQueue:
                 if station_queue[0] <= self.clock.time:
                     station_queue.pop(0)
 
-    def add_to_queue(self) -> (int, 0):
+    def add_to_queue(self) -> (int, int):
         """
         Adds a truck to an unload station.
         If no unload station is ready, adds the truck to the queue at the station with the least wait time.
